@@ -1,27 +1,15 @@
 // Your code goes here
 require("dotenv").config();
 
-//initializng express
-const express = require("express");
-
-//express being called in a variable
-const app = express();
-
-// call for json to be used
-app.use(express.json());
-
 //initilalizing Mongodb
 const { MongoClient, ObjectId } = require("mongodb");
 
-//localbrowser: port#
-const myPort = process.env.port || 3001;
-
 //class library
 class Library {
-  constructor(dbUrl, dbName, colName) {
+  constructor(dbUrl, dbName, collName) {
     this.dbUrl = dbUrl;
     this.dbName = dbName;
-    this.colName = colName;
+    this.collName = collName;
     this.dbClient;
   }
   //mongo client connection
@@ -40,18 +28,17 @@ class Library {
   async collection() {
     const client = await this.client();
     const db = client.db(this.dbName);
-    const collection = db.collection(this.colName);
+    const collection = db.collection(this.collName);
     return collection;
   }
   //async allbooks method
   async allBooks() {
     const collection = await this.collection();
+    const allBooks = await allBooks.test();
     return collection.find({});
   }
 }
-
-app.listen(myPort, () => {
-  console.log(`Connected to ${myPort}`);
+allBooks.forEach((element) => {
+  console.log(element);
 });
-
 module.exports = Library;
