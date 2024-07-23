@@ -34,11 +34,23 @@ class Library {
   //async allbooks method
   async allBooks() {
     const collection = await this.collection();
-    const allBooks = await allBooks.test();
+
     return collection.find({});
   }
+  async findOneBook(id) {
+    const docId = new ObjectId(id);
+    const collection = await this.collection();
+    return collection.find(docId);
+  }
+  async findManyBooks(query) {
+    const collection = await this.collection();
+    return collection.find(query);
+  }
+  async addBook() {
+    const collection = await this.collection();
+    await collection.insertOne(info);
+    console.log("Your Book was Succesfully added");
+  }
 }
-allBooks.forEach((element) => {
-  console.log(element);
-});
+
 module.exports = Library;
